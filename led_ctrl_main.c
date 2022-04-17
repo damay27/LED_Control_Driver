@@ -48,7 +48,7 @@ static int __init startup(void) {
     //Get major and minor numbers for the charater device
     err = alloc_chrdev_region(&char_device_numbers, 0, 1, DEVICE_NAME);
     if(err < 0) {
-        printk(KERN_WARNING "Falid to allocate defice numbers\n");
+        printk(KERN_WARNING "Failed to allocate device numbers\n");
         back_out_char_device();
         return -1;
     }
@@ -60,7 +60,7 @@ static int __init startup(void) {
     //Once the character device is added it is considered to be live
     err = cdev_add(&char_device, char_device_numbers, 1);
     if(err < 0) {
-        printk(KERN_WARNING "Falid to add the character device\n");
+        printk(KERN_WARNING "Failed to add the character device\n");
         back_out_char_device();
         return -1;
     }
